@@ -2,19 +2,19 @@
 #include "Node.h"
 
 template <typename T>
-class LinkedQueue
+class Queue
 {
 private:
 
 	Node<T>* backPtr;
 	Node<T>* frontPtr;
 public:
-	LinkedQueue();
+	Queue();
 	bool isEmpty() const;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;;
-	~LinkedQueue();
+	~Queue();
 };
 
 /*
@@ -22,7 +22,7 @@ Function: Queue()
 The constructor of the Queue class.
 */
 template <typename T>
-LinkedQueue<T>::LinkedQueue()
+Queue<T>::Queue()
 {
 	backPtr = nullptr;
 	frontPtr = nullptr;
@@ -37,7 +37,7 @@ Input: None.
 Output: True if the queue is empty; otherwise false.
 */
 template <typename T>
-bool LinkedQueue<T>::isEmpty() const
+bool Queue<T>::isEmpty() const
 {
 	return (frontPtr == nullptr);
 }
@@ -49,7 +49,7 @@ Input: newEntry .
 Output: True if the operation is successful; otherwise false.
 */
 template <typename T>
-bool LinkedQueue<T>::enqueue(const T& newEntry)
+bool Queue<T>::enqueue(const T& newEntry)
 {
 	Node<T>* newNodePtr = new Node<T>(newEntry);
 	// Insert the new node
@@ -70,7 +70,7 @@ Input: None.
 Output: True if the operation is successful; otherwise false.
 */
 template <typename T>
-bool LinkedQueue<T>::dequeue(T& frntEntry)
+bool Queue<T>::dequeue(T& frntEntry)
 {
 	if (isEmpty())
 		return false;
@@ -97,7 +97,7 @@ Input: None.
 Output: The front of the queue.
 */
 template <typename T>
-bool LinkedQueue<T>::peek(T& frntEntry) const
+bool Queue<T>::peek(T& frntEntry) const
 {
 	if (isEmpty())
 		return false;
@@ -112,7 +112,7 @@ Function: destructor
 removes all nodes from the queue by dequeuing them
 */
 template <typename T>
-LinkedQueue<T>::~LinkedQueue()
+Queue<T>::~Queue()
 {
 	T temp;
 

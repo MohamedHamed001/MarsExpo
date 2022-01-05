@@ -1,12 +1,7 @@
 #include "Events.h"
 
-Event::Event(int ED, int missionID)
+Event::Event(int ED, int id)
 {
-	Eventday = ED;
-	MissionID = missionID;
-}
-
-int Event::getED()
-{
-	return Eventday;
+	ID = id;
+	Event_day = ED;
 }

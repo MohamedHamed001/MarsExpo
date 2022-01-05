@@ -1,11 +1,11 @@
 #pragma once
+#include<iostream>
 #include "Rovers.h"
 class Mission
 {
 private:
 	Rover* rover;
-	int ID;
-	int FormulationDay;
+	char EventType;
 	char MissionType;
 	int TargetLoc;
 	int MissionDur;
@@ -14,9 +14,13 @@ private:
 	int TotalMissionDuration;
 	int ExecutionDays;
 	int CompleteDay;
+	int ID;
+	int EventDay;
+	int FormulationDay;
 
 public:
-	Mission(int FormulationDay, char MissionType, int id, int TargetLoc, int MissionDur, int Significance, Rover* r = nullptr);
+	Mission(char EventTyp, char MissionType, int EventD, int id, int TargetLoc, int MissionDur, int Significance, Rover* r = nullptr);
+	Mission(char EventTyp, int EventD, int id, Rover* r = nullptr);
 
 	void setRover(Rover*);
 	Rover* getRover();
@@ -38,9 +42,8 @@ public:
 	int getSignificance();
 	int getWD();
 	int getTotalMissionDur();
+	int getED();
 	int getCD();
-	int getED(); 
 	int getID();
-
 
 };

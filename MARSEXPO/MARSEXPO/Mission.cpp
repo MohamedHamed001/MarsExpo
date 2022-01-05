@@ -1,17 +1,35 @@
 #include "Mission.h"
 
 
-Mission::Mission(int FD, char Type,int id, int Loc, int Dur, int S, Rover* R)
+Mission::Mission(char ET, char Type, int ED, int Id, int Loc, int Dur, int S, Rover* R)
 {
-	FormulationDay = FD;
+	EventType = ET;
 	MissionType = Type;
-	ID = id;
+	EventDay = ED;
+	ID = Id;
 	TargetLoc = Loc;
 	MissionDur = Dur;
 	significance = S;
 	rover = R;
 	WaitingDays = 0;
 	TotalMissionDuration = 0;
+}
+
+Mission::Mission(char EventTyp, int EventD, int id, Rover* r)
+{
+	EventType = EventTyp;
+	EventDay = EventD;
+	ID = id;
+}
+
+void Mission::setID(int id)
+{
+	ID = id;
+}
+
+int Mission::getID()
+{
+	return ID;
 }
 
 void Mission::setRover(Rover* R)
@@ -29,11 +47,6 @@ Rover* Mission::getRover()
 void  Mission::setMissionType(char Type)
 {
 	MissionType = Type;
-}
-
-void Mission::setID(int id)
-{
-	ID = id;
 }
 
 char  Mission::getMissionType()
@@ -94,11 +107,6 @@ void  Mission::increamentWaitingDays()
 int Mission::getWD()
 {
 	return WaitingDays;
-}
-
-int Mission::getID()
-{
-	return ID;
 }
 
 void Mission::setCD(int CD)
