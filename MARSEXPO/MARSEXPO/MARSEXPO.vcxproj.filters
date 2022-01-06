@@ -87,6 +87,9 @@
     <ClInclude Include="PriNode.h">
       <Filter>DS</Filter>
     </ClInclude>
+    <ClInclude Include="AutoP.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mission.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Mission_Polar.cpp">
       <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoP.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

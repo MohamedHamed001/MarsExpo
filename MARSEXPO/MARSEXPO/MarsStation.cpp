@@ -55,12 +55,12 @@ void MarsStaion::PromoteMtoE()
     {
         Mission_Emergency* NEM = new Mission_Emergency(Temp->Get_ID(), Temp->Get_Tloc(), Temp->Get_MissionDuration(), Temp->Get_Formulation_day(), Temp->Get_SIG());
         EmergencyWaitingMission.insert(NEM, NEM->Get_Priority());
+        NoOfPromotedMissions++;
         mountainousWaitingMission.remove(1);
         if (mountainousWaitingMission.isEmpty())
             return;
         Temp = new Mission_Mountainous(mountainousWaitingMission.getEntry(1));
     }
-
 }
 
 MarsStaion::~MarsStaion()

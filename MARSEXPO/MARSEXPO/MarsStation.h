@@ -20,6 +20,11 @@
 #include "Rover_Mountainous.h"
 #include "Rover_Polar.h"
 
+
+
+/// <summary>
+/// FOR AMIN EL AMAR <3
+/// </summary>
 class Event;
 
 class MarsStaion
@@ -28,6 +33,7 @@ private:
 	List<Mission_Mountainous> mountainousWaitingMission; //linked list implementation for mountainous Missions 
 	PriQ<Mission_Emergency*> EmergencyWaitingMission;
 	Queue<Mission_Polar*> PolarWaitingMission;
+	int NoOfPromotedMissions;
 
 public:
 	MarsStaion(); //contructor

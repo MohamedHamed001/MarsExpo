@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AutoP.h" />
     <ClInclude Include="Cancellation.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Formulation.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AutoP.cpp" />
     <ClCompile Include="Cancellation.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Formulation.cpp" />
