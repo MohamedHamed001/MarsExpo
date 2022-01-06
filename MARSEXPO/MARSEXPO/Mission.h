@@ -35,6 +35,5 @@ public:
 	virtual int Get_ID();  //rover related getters
 	virtual int Get_Tloc();
 	virtual int Get_MissionDuration();
-	virtual int Get_Priority() = 0;
 
 };

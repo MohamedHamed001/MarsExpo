@@ -49,3 +49,4 @@ int Mission::Get_Tloc() { return Tloc; }
 int Mission::Get_MissionDuration() { return MissionDuration; }
 
 int Mission::Get_SIG() { return SIG; }
+

@@ -25,6 +25,9 @@
     <Filter Include="Events">
       <UniqueIdentifier>{bcc9df94-f743-47b9-bc5f-1ee314bac66f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MarsStation">
+      <UniqueIdentifier>{ccf6b3b8-574f-4dc2-a31d-cfdd806b40fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Node.h">
@@ -66,10 +69,13 @@
     <ClInclude Include="Rover_Mountainous.h">
       <Filter>Rovers</Filter>
     </ClInclude>
-    <ClInclude Include="Mission_Mountainous.h">
-      <Filter>Missions</Filter>
+    <ClInclude Include="MarsStation.h">
+      <Filter>MarsStation</Filter>
     </ClInclude>
     <ClInclude Include="Mission_Emergency.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission_Mountainous.h">
       <Filter>Missions</Filter>
     </ClInclude>
     <ClInclude Include="Mission_Polar.h">
@@ -107,10 +113,13 @@
     <ClCompile Include="Rover_Mountainous.cpp">
       <Filter>Rovers</Filter>
     </ClCompile>
-    <ClCompile Include="Mission_Mountainous.cpp">
-      <Filter>Missions</Filter>
+    <ClCompile Include="MarsStation.cpp">
+      <Filter>MarsStation</Filter>
     </ClCompile>
     <ClCompile Include="Mission_Emergency.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission_Mountainous.cpp">
       <Filter>Missions</Filter>
     </ClCompile>
     <ClCompile Include="Mission_Polar.cpp">
