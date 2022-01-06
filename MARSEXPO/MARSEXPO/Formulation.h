@@ -10,8 +10,7 @@ private:
 	int SIG;
 
 public:
-	Formulation(char, char, int, int, int, int);
-	void Execute(PriQ<Mission>& Emergency, Queue<int>& Mountainous, Queue<Mission>& Polar);
-
+	Formulation(char, int, int, int, int, int);
+	void Execute(PriQ<Mission*>& Emergency, Queue<Mission*>& Mountainous, Queue<Mission*>& Polar);
 };
 

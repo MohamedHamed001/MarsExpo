@@ -5,7 +5,6 @@ class Mission
 {
 private:
 	Rover* rover;
-	char EventType;
 	char MissionType;
 	int TargetLoc;
 	int MissionDur;
@@ -19,8 +18,8 @@ private:
 	int FormulationDay;
 
 public:
-	Mission(char EventTyp, char MissionType, int EventD, int id, int TargetLoc, int MissionDur, int Significance, Rover* r = nullptr);
-	Mission(char EventTyp, int EventD, int id, Rover* r = nullptr);
+	Mission(char MissionType, int EventD, int id, int TargetLoc, int MissionDur, int Significance, Rover* r = nullptr);
+	Mission( int EventD, int id, Rover* r = nullptr);
 
 	void setRover(Rover*);
 	Rover* getRover();

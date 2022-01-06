@@ -1,9 +1,8 @@
 #include "Mission.h"
 
 
-Mission::Mission(char ET, char Type, int ED, int Id, int Loc, int Dur, int S, Rover* R)
+Mission::Mission(char Type, int ED, int Id, int Loc, int Dur, int S, Rover* R)
 {
-	EventType = ET;
 	MissionType = Type;
 	EventDay = ED;
 	ID = Id;
@@ -15,9 +14,8 @@ Mission::Mission(char ET, char Type, int ED, int Id, int Loc, int Dur, int S, Ro
 	TotalMissionDuration = 0;
 }
 
-Mission::Mission(char EventTyp, int EventD, int id, Rover* r)
+Mission::Mission(int EventD, int id, Rover* r)
 {
-	EventType = EventTyp;
 	EventDay = EventD;
 	ID = id;
 }
