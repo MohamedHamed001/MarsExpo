@@ -5,29 +5,24 @@
 #include "Promotion.h"
 
 
-Promotion::Promotion(int id, int ED):Event('P',ED,id)
+PromotionEvent::PromotionEvent(int id, int ED):Event(ED)
 {
+	ID = id;
+} 
+
+void PromotionEvent::Execute(MarsStaion* mStation) //me7tag amshy 3la el list w adwr 3la el id ely mab3oltly 3lashan yt3mlo promotion
+{	
+	Mission_Mountainous m(ID, 0, 0, 0, 0, 0);
+	int indexofmission = mStation->IndexOfMountainousMission(m);
+	if (indexofmission != 1)
+	{
+		Mission_Mountainous MM = mStation->getMountainious(indexofmission);
+		Mission_Emergency* NEM = new Mission_Emergency(MM.Get_ID(), MM.Get_Tloc(), MM.Get_MissionDuration(), MM.Get_Formulation_day(), MM.Get_SIG());
+		mStation->removeMountainousMission(indexofmission);
+		mStation->AddMission(NEM);
+	}
 }
 
-void Promotion::Execute(PriQ<Mission*>& Emergency, Queue<Mission*>& Mountainous, Queue<Mission*>& Polar) //me7tag amshy 3la el list w adwr 3la el id ely mab3oltly 3lashan yt3mlo promotion
-{	// lazm 2a search 3la el list el awl for the the givin id to locate the mission 
-	//step 1 find the mission in the missions list of mountinious
-	Mission* m=new Mission('M',Event_day,ID,-1,-1,-1);
-	Node  <Mission*>* toprom = new Node<Mission*>(m,ID);
-	Mission* temp;
-	while (Mountainous.dequeue(temp))
-	{
-		if (temp->getID() == m->getID())
-		{
-			//found the mission to be promoted 
-			//n7otaha f node w n enque f el emergency ba2a
-			Mission* t2 = toprom->getData();
-			Mission* promoted = new Mission('E', t2->getED(), t2->getID(), t2->getTargetLoc(), t2->getMissionDur(), t2->getSignificance());
-			int priority; //Priroity equation 
-			Emergency.enqueue(&promoted,priority);
-		}
-	}
-	
-	
-
+PromotionEvent::~PromotionEvent()
+{
 }

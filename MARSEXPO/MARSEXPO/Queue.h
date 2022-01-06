@@ -1,58 +1,130 @@
 #pragma once
-#include<iostream>
 #include "Node.h"
-
-
 template <typename T>
 class Queue
 {
-	Node<T>* frtPtr;
-	Node<T>* backPtr;
+private:
+
+    Node<T>* backPtr;
+    Node<T>* frontPtr;
 public:
-	Queue()
-	{
-		frtPtr = nullptr;
-		backPtr = nullptr;
-	}
-	void enqueue(T* d)
-	{
-		Node<T>* newPtr = new Node<T>(d);
-		if (!frtPtr)
-		{
-			frtPtr = newPtr;
-			backPtr = frtPtr;
-			return;
-		}
-		backPtr->setNext(newPtr);
-		backPtr = backPtr->getNext();
-	}
-	bool dequeue(Node<T>*& temp)
-	{
-		if (isEmpty())
-			return false;
-		if (frtPtr == backPtr)
-		{
-			temp = frtPtr;
-			frtPtr = nullptr;
-			backPtr = nullptr;
-			return true;
-		}
-		temp = frtPtr;
-		frtPtr = frtPtr->getNext();
-		return true;
+    Queue();
+    bool isEmpty() const;
+    bool enqueue(const T& newEntry);
+    bool dequeue(T& frntEntry);
+    bool peek(T& frntEntry)  const;
+    int getSize();
+    //void print() const;
+    ~Queue();
 
-	}
-
-	bool peek(Node<T>*& temp)
-	{
-		if (isEmpty())
-			return false;
-		temp = frtPtr;
-		return true;
-	}
-
-	bool isEmpty()
-	{
-		return(frtPtr == nullptr);
-	}
+    //copy constructor
+    Queue(const Queue<T>& LQ);
 };
+
+template <typename T>
+Queue<T>::Queue()
+{
+    backPtr = nullptr;
+    frontPtr = nullptr;
+
+}
+
+
+template <typename T>
+bool Queue<T>::isEmpty() const
+{
+    return (frontPtr == nullptr);
+}
+
+template <typename T>
+bool Queue<T>::enqueue(const T& newEntry)
+{
+    Node<T>* newNodePtr = new Node<T>(newEntry);
+    // Insert the new Node
+    if (isEmpty())    //special case if this is the first Node to insert
+        frontPtr = newNode2Ptr; // The queue is empty
+    else
+        backPtr->setNext(newNodePtr); // The queue was not empty
+
+    backPtr = newNodePtr; // New Node is the last Node now
+    return true;
+} // end enqueue
+
+template <typename T>
+bool Queue<T>::dequeue(T& frntEntry)
+{
+    if (isEmpty())
+        return false;
+
+    Node<T>* NodeToDeletePtr = frontPtr;
+    frntEntry = frontPtr->getItem();
+    frontPtr = frontPtr->getNext();
+    // Queue is not empty; remove front
+    if (NodeToDeletePtr == backPtr)     // Special case: last Node
+
+        in the queue
+        backPtr = nullptr;
+
+    // Free memory reserved for the dequeued Node2
+    delete NodeToDeletePtr;
+
+    return true;
+
+}
+
+template <typename T>
+Queue<T>::~Queue()
+{
+    T temp;
+
+    //Free (Dequeue) all Node2s in the queue
+    while (dequeue(temp));
+}
+
+template <typename T>
+Queue<T>::Queue(const Queue<T>& LQ)
+{
+    Node<T>* NodePtr = LQ.frontPtr;
+    if (!NodePtr) //LQ is empty
+    {
+        frontPtr = backPtr = nullptr;
+        return;
+    }
+
+    //insert the first Node2
+    Node<T>* ptr = new Node<T>(NodePtr->getItem());
+    frontPtr = backPtr = ptr;
+    NodePtr = NodePtr->getNext();
+
+    //insert remaining Node2s
+    while (Node2Ptr)
+    {
+        Node<T>* ptr = new Node<T>(NodePtr->getItem());
+        backPtr->setNext(ptr);
+        backPtr = ptr;
+        NodePtr = NodePtr->getNext();
+    }
+}
+
+template <typename T>
+bool Queue<T>::peek(T& frntEntry) const
+{
+    if (isEmpty())
+        return false;
+
+    frntEntry = frontPtr->getItem();
+    return true;
+
+}
+
+template <typename T>
+int Queue<T>::getSize()
+{
+    Node<T>* NodePtr = frontPtr;
+    int s(0);
+    while (NodePtr) {
+        s++;
+        NodePtr = NodePtr->getNext();
+    }
+    return s;
+}

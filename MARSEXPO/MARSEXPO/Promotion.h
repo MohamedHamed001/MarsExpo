@@ -1,9 +1,13 @@
 #pragma once
 #include "Events.h" 
+#include "MarsStation.h"
 
-class Promotion : public Event
+class PromotionEvent : public Event
 {
+private:
+	int ID;
 public:
-	Promotion(int id, int ED);
-	void Execute(PriQ<Mission*>& Emergency, Queue<Mission*>& Mountainous, Queue<Mission*>& Polar);
+	PromotionEvent(int id, int ED);
+	void Execute(MarsStaion* mStation);
+	~PromotionEvent();
 };

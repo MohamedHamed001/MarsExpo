@@ -6,6 +6,7 @@
 #include "Mission_Polar.h"
 #include "PriQ.h"
 #include "Queue.h"
+#include "MarsStation.h"
 
 //class FormulatoinEvent
 class FormulationEvent : public Event
@@ -20,7 +21,7 @@ public:
 	FormulationEvent(char, int, int, int, int, int);
 	~FormulationEvent();
 
-	void execute(PriQ<Mission*>& , Queue<Mission*>& , Queue<Mission*>& );
+	void execute(MarsStaion* mStation);
 	int getTargetLocation()const;
 	int getMissionDuration()const;
 	int getMissionSignificance()const;

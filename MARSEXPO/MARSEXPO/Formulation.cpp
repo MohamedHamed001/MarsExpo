@@ -20,26 +20,24 @@ int FormulationEvent::getId() const
 }
 
 //execute
-void FormulationEvent::execute(PriQ<Mission*>& emergency, Queue<Mission*>& Mountainous, Queue<Mission*>& polar)
+void FormulationEvent::execute(MarsStaion* mStation)
 {
-
-
 	Mission* mission;
 
 	if (TYP == 'E')
 	{
 		mission = new Mission_Emergency(ID, TLOC, MDUR, getED(), SIG);
-		emergency.insert(mission, ((Mission_Emergency*)mission)->Get_Priority());
+		mStation->AddMission(mission);
 	}
 	else if (TYP == 'M')
 	{
 		mission = new Mission_Mountainous(ID, TLOC, MDUR, getED(), SIG, ((Mission_Mountainous*)mission)->Get_AutoP());
-		Mountainous.enqueue(mission);
+		mStation->AddMission(mission);
 	}
 	else if (TYP == 'P')
 	{
 		mission = new Mission_Polar(ID, TLOC, MDUR, getED(), SIG);
-		polar.enqueue(mission);
+		mStation->AddMission(mission);
 	}
 	return;
 }
