@@ -144,10 +144,13 @@
     <ClInclude Include="Formulation.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Pqueue.h" />
+    <ClInclude Include="PriQ.h" />
     <ClInclude Include="Promotion.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Rovers.h" />
+    <ClInclude Include="Rover_Emergency.h" />
+    <ClInclude Include="Rover_Mountainous.h" />
+    <ClInclude Include="Rover_Polar.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +160,9 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Promotion.cpp" />
     <ClCompile Include="Rovers.cpp" />
+    <ClCompile Include="Rover_Emergency.cpp" />
+    <ClCompile Include="Rover_Polar.cpp" />
+    <ClCompile Include="Rover_Mountainous.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
