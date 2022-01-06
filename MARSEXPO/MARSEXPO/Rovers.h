@@ -9,7 +9,7 @@ private:
 	int Rover_ID;				// ID for each rover
 	int Num_Missions;			// number of missions done by rover (failures are counted too)
 	int Checkup_EndDay;			// the day the rover will finish checkup
-	float Speed;					// speed for each rover type
+	float AvgSpeed;					// speed for each rover type
 	int Missions_Befor_Checkup;	// number of missions before needing a checkup
 	int Checkup_Dur;			// checkup duration
 	int Missions_Till_Checkup;	// number of missions left till checkup is required
@@ -30,7 +30,7 @@ public:
 	virtual void set_Checkup_EndDay(int);
 	virtual int get_Checkup_EndDay() const;
 
-	virtual float get_Speed() const;
+	virtual float get_Avg_Speed() const;
 	virtual int get_Missions_Befor_Checkup() const;
 	virtual int get_Checkup_Dur() const;
 

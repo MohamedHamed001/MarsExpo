@@ -10,7 +10,7 @@ PromotionEvent::PromotionEvent(int id, int ED):Event(ED)
 	ID = id;
 } 
 
-void PromotionEvent::Execute(MarsStaion* mStation) //me7tag amshy 3la el list w adwr 3la el id ely mab3oltly 3lashan yt3mlo promotion
+void PromotionEvent::execute(MarsStation* mStation) //me7tag amshy 3la el list w adwr 3la el id ely mab3oltly 3lashan yt3mlo promotion
 {	
 	Mission_Mountainous m(ID, 0, 0, 0, 0, 0);
 	int indexofmission = mStation->IndexOfMountainousMission(m);

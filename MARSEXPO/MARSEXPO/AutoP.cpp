@@ -3,9 +3,9 @@
 AutoPromotionEvent::AutoPromotionEvent(int ED):Event(ED)
 {}
 
-void AutoPromotionEvent::execute(MarsStation * mStation)
+void AutoPromotionEvent::execute(MarsStation* mStation)
 {
-
+	mStation->PromoteMtoE();
 }
 
 AutoPromotionEvent::~AutoPromotionEvent()

@@ -8,6 +8,6 @@ private:
 	int ID;
 public:
 	PromotionEvent(int id, int ED);
-	void Execute(MarsStaion* mStation);
+	void execute(MarsStation* mStation);
 	~PromotionEvent();
 };

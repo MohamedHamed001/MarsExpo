@@ -20,7 +20,7 @@ int FormulationEvent::getId() const
 }
 
 //execute
-void FormulationEvent::execute(MarsStaion* mStation)
+void FormulationEvent::execute(MarsStation* mStation)
 {
 	Mission* mission;
 
@@ -41,3 +41,4 @@ void FormulationEvent::execute(MarsStaion* mStation)
 	}
 	return;
 }
+

@@ -113,12 +113,12 @@ bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
 		}
 		else if (ETyp == 'X')
 		{
-			Event* Cancellation = new Event(ED, id);
+			CancellationEvent* Cancellation = new CancellationEvent(ED, id);
 			Event_List.enqueue(Cancellation);
 		}
 		else if (ETyp == 'P')
 		{
-			Event* Promotion = new Event(ED, id);
+			PromotionEvent* Promotion = new PromotionEvent(ED, id);
 			Event_List.enqueue(Promotion);
 		}
 	}
@@ -137,7 +137,7 @@ void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>
 	for (int i = 0; i < M_Rovers; i++)
 	{
 		rover = new Rover(M_Speed, Checkup, M_Checkup_Dur);						// creates the rover
-		rovers_polar.insert(rover, ((Rover_Mountainous*)rover)->get_Speed());	// places it in the list, sorted
+		rovers_Mountainous.insert(rover, ((Rover_Mountainous*)rover)->get_Speed());	// places it in the list, sorted
 																				// descendingly according to speed
 	}
 	for (int i = 0; i < E_Rovers; i++)
@@ -154,36 +154,38 @@ void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>
 	}
 }
 
-int UI::getMode() {
+int UI::getMode() 
+{
 	cout << "Welcome To Mars Ground Station !\n";
 	cout << "Please choose mode of operation: 1-Interactive   2-Step-by-step   3-Silent\n";
 	cin >> mode;
 	return mode;
 }
 
-void UI::Print(string line1, string line2, string line3, string line4, string line5, string line6) {
+void UI::Print(string line1, string line2, string line3, string line4, string line5, string line6) 
+{
+	string x = "\n-------------------------------------------------------\n";
 	if (mode == 1) {
 		cin.ignore();
-		string x = "\n-------------------------------------------------------\n";
 		cout << line1 << endl << line2 << x << line3 << x << line4 << x << line5 << x << line6 << endl << endl;
 
 	}
 	else if (mode == 2) {
-		string x = "\n-------------------------------------------------------\n";
 		cout << line1 << endl << line2 << x << line3 << x << line4 << x << line5 << x << line6 << endl << endl;
 		Sleep(1000);
 	}
 }
 
-void UI::SaveFile(string line1, string line2, string line3, string line4, float wait, float exec, int fails) {
+void UI::SaveFile(string line1, string line2, string line3, string line4, float wait, float exec, int AutoP) 
+{
 	if (mode == 3)
 		cout << "Silent Mode \nSimulation Starts...\n";
 
 	ofstream saved_file;
 	saved_file.open("saved_file.txt", ios::out | ios::trunc);
 	saved_file << line1 << endl << line2 << endl << line3 << endl << line4 << endl;
-	saved_file << "Avg. Wait = " << setprecision(3) << wait << ", Avg. Exec = " << setprecision(3) << exec;
-	saved_file << endl << "Failures = " << fails;
+	saved_file << "Avg. Wait = " << setprecision(4) << wait << ", Avg. Exec = " << setprecision(4) << exec;
+	saved_file << endl << "Auto-promoted = " << AutoP;
 	saved_file.close();
 	cout << "Simulation ends, Output file created\n\n";
 }

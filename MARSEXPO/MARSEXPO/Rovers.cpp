@@ -1,6 +1,6 @@
 #include "Rovers.h"
 
-Rover::Rover() : Speed(-1), Missions_Befor_Checkup(-1), Checkup_Dur(-1)
+Rover::Rover() : AvgSpeed(-1), Missions_Befor_Checkup(-1), Checkup_Dur(-1)
 {
 	Num_Missions = 0;
 	Curr_Mission = nullptr;
@@ -8,7 +8,7 @@ Rover::Rover() : Speed(-1), Missions_Befor_Checkup(-1), Checkup_Dur(-1)
 	Missions_Till_Checkup = Missions_Befor_Checkup;
 }
 
-Rover::Rover(int S, int CheckMissions, int CheckDur) : Speed(S), Missions_Befor_Checkup(CheckMissions), Checkup_Dur(CheckDur)
+Rover::Rover(int S, int CheckMissions, int CheckDur) : AvgSpeed(S), Missions_Befor_Checkup(CheckMissions), Checkup_Dur(CheckDur)
 {
 	// initially, the rover has done no missions
 	// and has no assinged mission
@@ -48,9 +48,9 @@ int Rover::get_Checkup_EndDay() const
 	return Checkup_EndDay;
 }
 
-float Rover::get_Speed() const
+float Rover::get_Avg_Speed() const
 {
-	return Speed;
+	return AvgSpeed;
 }
 
 int Rover::get_Missions_Befor_Checkup() const

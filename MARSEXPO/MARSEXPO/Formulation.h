@@ -21,10 +21,11 @@ public:
 	FormulationEvent(char, int, int, int, int, int);
 	~FormulationEvent();
 
-	void execute(MarsStaion* mStation);
+	void execute(MarsStation* mStation);
 	int getTargetLocation()const;
 	int getMissionDuration()const;
 	int getMissionSignificance()const;
 	int getId() const;
+
 };;
 

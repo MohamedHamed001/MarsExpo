@@ -9,6 +9,6 @@ private:
 	int id;
 public:
 	CancellationEvent(int ED, int i);
-	void Execute(MarsStaion* mStation);
+	void execute(MarsStation* mStation);
 	~CancellationEvent();
 };

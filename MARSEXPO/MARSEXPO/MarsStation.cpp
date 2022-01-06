@@ -1,12 +1,15 @@
 #include "MarsStation.h"
 
-MarsStaion::MarsStaion()
+MarsStation::MarsStation()
 {
-
+    UserInterface = new UI();
+    current_day = 0;
+    Num_Of_Events = 0;
+    srand(time(NULL)); // changes the seed for rand()
 }
 
 
-void MarsStaion::AddMission(Mission* m)
+void MarsStation::AddMission(Mission* m)
 {
     Mission_Emergency* nM1 = dynamic_cast<Mission_Emergency*>(m);
     if (nM1)
@@ -29,24 +32,24 @@ void MarsStaion::AddMission(Mission* m)
 }
 
 
-int MarsStaion::IndexOfMountainousMission(const Mission_Mountainous& mMission)
+int MarsStation::IndexOfMountainousMission(const Mission_Mountainous& mMission)
 {
     return mountainousWaitingMission.getIndexOf(mMission);
 }
 
-void MarsStaion::removeMountainousMission(int index)
+void MarsStation::removeMountainousMission(int index)
 {
     mountainousWaitingMission.remove(index);
 }
 
 
 
-Mission_Mountainous MarsStaion::getMountainious(int index)
+Mission_Mountainous MarsStation::getMountainious(int index)
 {
     return mountainousWaitingMission.getEntry(index);
 }
 
-void MarsStaion::PromoteMtoE()
+void MarsStation::PromoteMtoE()
 {
     if (mountainousWaitingMission.isEmpty())    
         return;
@@ -63,7 +66,7 @@ void MarsStaion::PromoteMtoE()
     }
 }
 
-MarsStaion::~MarsStaion()
+MarsStation::~MarsStation()
 {
 }
 

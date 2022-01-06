@@ -4,7 +4,7 @@
 Rover_Mountainous::Rover_Mountainous(int S, int CheckMissions, int CheckDur) : Rover(S, CheckMissions, CheckDur)
 {
 	set_ID(++ID); // increases static id from 0 to 1 for example, then places it
-	set_Speed(get_Speed());
+	set_Speed(get_Avg_Speed());
 }
 
 void Rover_Mountainous::set_Speed(int S)
