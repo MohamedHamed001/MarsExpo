@@ -1,128 +1,51 @@
 #include "Mission.h"
 
-
-Mission::Mission(char Type, int ED, int Id, int Loc, int Dur, int S, Rover* R)
+Mission::Mission(int id, int location, int durration, int formulation, int sig) :ID(id)
 {
-	MissionType = Type;
-	EventDay = ED;
-	ID = Id;
-	TargetLoc = Loc;
-	MissionDur = Dur;
-	significance = S;
-	rover = R;
-	WaitingDays = 0;
-	TotalMissionDuration = 0;
+	this->Tloc = location;
+	this->MissionDuration = durration;
+	this->Formulation_day = formulation;
+	this->SIG = sig;
+
+	Waiting_Days = -1;
+	Excution_Days = -1;
+	Completion_Day = -1;
 }
 
-Mission::Mission(int EventD, int id, Rover* r)
+void Mission::Set_Formulation_day(int currentDay)
 {
-	EventDay = EventD;
-	ID = id;
+	Formulation_day = currentDay;
 }
 
-void Mission::setID(int id)
+void Mission::Set_Waiting_Days(int currentDay)
 {
-	ID = id;
+	Waiting_Days = (currentDay - Formulation_day);
 }
 
-int Mission::getID()
+void Mission::Set_Excution_Days(float velocity)//calc the ED takes input the velocity of each rovers
 {
-	return ID;
+	Excution_Days = MissionDuration + ceil(((2 * Tloc) / (velocity)) / 25);
 }
 
-void Mission::setRover(Rover* R)
+void Mission::Set_Completion_Day() //calculates the completion day
 {
-	if (R)
-		TotalMissionDuration = MissionDur + (TargetLoc / (R->getSpeed())) * 2 / 25; //wa2t el mission + el tari2 ray7 rag3 w khod balk day on mars 25h
-	rover = R;
+	Completion_Day = Formulation_day + Waiting_Days + Excution_Days;
 }
 
-Rover* Mission::getRover()
-{
-	return rover;
-}
+//mission rekated getters
+int Mission::Get_Formulation_day() { return Formulation_day; }
 
-void  Mission::setMissionType(char Type)
-{
-	MissionType = Type;
-}
+int Mission::Get_Waiting_Days() { return Waiting_Days; }
 
-char  Mission::getMissionType()
-{
-	return MissionType;
-}
+int Mission::Get_Excution_Days() { return Excution_Days; }
 
-void Mission::setFormulationDay(int FD)
-{
-	FormulationDay = FD;
-}
+int Mission::Get_Completion_Day() { return Completion_Day; }
 
-int Mission::getFormulationDay()
-{
-	return FormulationDay;
-}
+//rover related getters
+int Mission::Get_ID() { return ID; }
 
-void Mission::setTargetLoc(int Loc)
-{
-	TargetLoc = Loc;
-}
+int Mission::Get_Tloc() { return Tloc; }
 
-int Mission::getTargetLoc()
-{
-	return TargetLoc;
-}
+int Mission::Get_MissionDuration() { return MissionDuration; }
 
-void Mission::setMissionDur(int Dur)
-{
-	MissionDur = Dur;
-}
-
-int Mission::getMissionDur()
-{
-	return MissionDur;
-}
-
-void Mission::setSignificance(int S)
-{
-	significance = S;
-}
-
-int Mission::getSignificance()
-{
-	return significance;
-}
-
-int Mission::getTotalMissionDur()
-{
-	return TotalMissionDuration;
-}
-
-void  Mission::increamentWaitingDays()
-{
-	WaitingDays++;
-}
-
-int Mission::getWD()
-{
-	return WaitingDays;
-}
-
-void Mission::setCD(int CD)
-{
-	CompleteDay = CD;
-}
-
-int Mission::getCD()
-{
-	return CompleteDay;
-}
-
-void Mission::setED(int ED)
-{
-	ExecutionDays = ED;
-}
-
-int Mission::getED()
-{
-	return ExecutionDays;
-}
+int Mission::Get_SIG() { return SIG; }

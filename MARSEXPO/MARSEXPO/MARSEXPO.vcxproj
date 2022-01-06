@@ -143,6 +143,9 @@
     <ClInclude Include="Events.h" />
     <ClInclude Include="Formulation.h" />
     <ClInclude Include="Mission.h" />
+    <ClInclude Include="Mission_Emergency.h" />
+    <ClInclude Include="Mission_Mountainous.h" />
+    <ClInclude Include="Mission_Polar.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PriQ.h" />
     <ClInclude Include="Promotion.h" />
@@ -158,6 +161,9 @@
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Formulation.cpp" />
     <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="Mission_Emergency.cpp" />
+    <ClCompile Include="Mission_Mountainous.cpp" />
+    <ClCompile Include="Mission_Polar.cpp" />
     <ClCompile Include="Promotion.cpp" />
     <ClCompile Include="Rovers.cpp" />
     <ClCompile Include="Rover_Emergency.cpp" />

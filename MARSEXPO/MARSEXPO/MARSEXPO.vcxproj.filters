@@ -66,6 +66,15 @@
     <ClInclude Include="Rover_Mountainous.h">
       <Filter>Rovers</Filter>
     </ClInclude>
+    <ClInclude Include="Mission_Mountainous.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission_Emergency.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mission_Polar.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mission.cpp">
@@ -97,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="Rover_Mountainous.cpp">
       <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission_Mountainous.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission_Emergency.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission_Polar.cpp">
+      <Filter>Missions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
