@@ -1,55 +1,60 @@
 #pragma once
-
-// ====================> Class Node <====================
-
-template <typename T>
+template<typename T>
 class Node
 {
-private:
-
-	T data;
-	Node<T>* Next;
-	int Rank;
-
+protected:
+	T item;	
+	Node<T>* next;
 public:
 
-	Node() {
-		Next = nullptr;
-		Rank = -1;
-	}
+	Node();
+	Node(const T&);
+	Node(const T&, Node<T>*);
+	void setItem(const T&);
+	void setNext(Node<T>* );
+	T getItem() const;
+	Node<T>* getNext() const;
+};
+template<typename T>
+Node<T>::Node()
+{
+	next = nullptr;
+}
 
-	Node(T NewItem, int k = -1) {
-		data = NewItem;
-		Next = nullptr;
-		Key = k;
-	}
+template<typename T>
+Node<T>::Node(const T& newItem) :item(newItem)
+{
+	//item = newItem;
+	next = nullptr;
+}
+template<typename T>
+Node<T>::Node(const T& newItem, Node<T>* nextNode) : item(newItem)
+{
+	//item = newItem;
+	next = nextNode;
+}
 
-	void setData(T newItem)
-	{
-		data = newItem;
-	}
+template<typename T>
 
-	void setNext(Node<T>* nextNodePtr)
-	{
-		Next = nextNodePtr;
-	}
+void Node<T>::setItem(const T& newItem)
+{
+	item = newItem;
+} // end setItem
 
-	void setKey(int k) {
-		Key = k;
-	}
 
-	T getData() const
-	{
-		return data;
-	}
+template<typename T>
+void Node<T>::setNext(Node<T>* nextNodePtr)
+{
+	next = nextNodePtr;
+}
+template<typename T>
+T Node<T>::getItem() const
+{
+	return item;
+} // end getItem
 
-	Node<T>* getNext() const
-	{
-		return Next;
-	}
-
-	int getKey() {
-		return Key;
-	}
-
-}; // ENd Node
+template<typename T>
+Node<T>* Node<T>::getNext() const
+{
+	return next;
+}

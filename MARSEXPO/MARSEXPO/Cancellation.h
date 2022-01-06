@@ -1,9 +1,10 @@
 #pragma once
 #include "Events.h"
 
-class Cancellation :public Event
+class CancellationEvent :public Event
 {
 public:
-	Cancellation(int id, int ED);
-	void Execute(PriQ<Mission*>& Emergency, Queue<Mission*>& Mountainous, Queue<Mission*>& Polar);
+	CancellationEvent(int id, int ED);
+	void Execute(PriQ<Mission*>& , Queue<Mission*>& , Queue<Mission*>&);
+
 };

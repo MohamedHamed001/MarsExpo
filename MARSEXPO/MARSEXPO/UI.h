@@ -1,6 +1,9 @@
 #pragma once
 #include <windows.h>
 #include "Events.h"
+#include "Formulation.h"
+#include "Cancellation.h"
+#include "Promotion.h"
 #include "Rovers.h"
 #include "Rover_Mountainous.h"
 #include "Rover_Emergency.h"

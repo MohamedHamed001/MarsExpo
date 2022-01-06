@@ -108,7 +108,7 @@ bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
 		}
 		if (ETyp == 'F')
 		{
-			Event* Formulation = new Event(MTyp, ED, id, TLoc, dur, sig);
+			FormulationEvent* Formulation = new FormulationEvent(MTyp, ED, id, TLoc, dur, sig);
 			Event_List.enqueue(Formulation);
 		}
 		else if (ETyp == 'X')

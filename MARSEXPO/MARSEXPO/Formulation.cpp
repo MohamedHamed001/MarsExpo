@@ -1,7 +1,7 @@
 #include "Formulation.h"
 
 
-FormulationEvent::FormulationEvent(int e, int i, char t, int tL, int nD, int s) :Event(e),
+FormulationEvent::FormulationEvent(char t, int e, int i, int tL, int nD, int s):Event(e),
  ID(i), TYP(t), TLOC(tL), MDUR(nD), SIG(s)
 {}
 

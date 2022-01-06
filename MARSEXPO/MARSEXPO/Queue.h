@@ -1,123 +1,58 @@
 #pragma once
+#include<iostream>
 #include "Node.h"
+
 
 template <typename T>
 class Queue
 {
-private:
-
+	Node<T>* frtPtr;
 	Node<T>* backPtr;
-	Node<T>* frontPtr;
 public:
-	Queue();
-	bool isEmpty() const;
-	bool enqueue(const T& newEntry);
-	bool dequeue(T& frntEntry);
-	bool peek(T& frntEntry)  const;;
-	~Queue();
-};
-
-/*
-Function: Queue()
-The constructor of the Queue class.
-*/
-template <typename T>
-Queue<T>::Queue()
-{
-	backPtr = nullptr;
-	frontPtr = nullptr;
-
-}
-
-/*
-Function: isEmpty
-Sees whether this queue is empty.
-
-Input: None.
-Output: True if the queue is empty; otherwise false.
-*/
-template <typename T>
-bool Queue<T>::isEmpty() const
-{
-	return (frontPtr == nullptr);
-}
-
-/*Function:enqueue
-Adds newEntry at the back of this queue.
-
-Input: newEntry .
-Output: True if the operation is successful; otherwise false.
-*/
-template <typename T>
-bool Queue<T>::enqueue(const T& newEntry)
-{
-	Node<T>* newNodePtr = new Node<T>(newEntry);
-	// Insert the new node
-	if (isEmpty())	//special case if this is the first node to insert
-		frontPtr = newNodePtr; // The queue is empty
-	else
-		backPtr->setNext(newNodePtr); // The queue was not empty
-
-	backPtr = newNodePtr; // New node is the last node now
-	return true;
-} // end enqueue
-
-/*Function: dequeue
-Removes the front of this queue. That is, removes the item that was added
-earliest.
-
-Input: None.
-Output: True if the operation is successful; otherwise false.
-*/
-template <typename T>
-bool Queue<T>::dequeue(T& frntEntry)
-{
-	if (isEmpty())
-		return false;
-
-	Node<T>* nodeToDeletePtr = frontPtr;
-	frntEntry = frontPtr->getItem();
-	frontPtr = frontPtr->getNext();
-	// Queue is not empty; remove front
-	if (nodeToDeletePtr == backPtr)	 // Special case: last node in the queue
+	Queue()
+	{
+		frtPtr = nullptr;
 		backPtr = nullptr;
+	}
+	void enqueue(T* d)
+	{
+		Node<T>* newPtr = new Node<T>(d);
+		if (!frtPtr)
+		{
+			frtPtr = newPtr;
+			backPtr = frtPtr;
+			return;
+		}
+		backPtr->setNext(newPtr);
+		backPtr = backPtr->getNext();
+	}
+	bool dequeue(Node<T>*& temp)
+	{
+		if (isEmpty())
+			return false;
+		if (frtPtr == backPtr)
+		{
+			temp = frtPtr;
+			frtPtr = nullptr;
+			backPtr = nullptr;
+			return true;
+		}
+		temp = frtPtr;
+		frtPtr = frtPtr->getNext();
+		return true;
 
-	// Free memory reserved for the dequeued node
-	delete nodeToDeletePtr;
+	}
 
-	return true;
+	bool peek(Node<T>*& temp)
+	{
+		if (isEmpty())
+			return false;
+		temp = frtPtr;
+		return true;
+	}
 
-}
-
-/*
-Function: peek
-copies the front of this queue to the passed param. The operation does not modify the queue.
-
-Input: None.
-Output: The front of the queue.
-*/
-template <typename T>
-bool Queue<T>::peek(T& frntEntry) const
-{
-	if (isEmpty())
-		return false;
-
-	frntEntry = frontPtr->getItem();
-	return true;
-
-}
-
-/*
-Function: destructor
-removes all nodes from the queue by dequeuing them
-*/
-template <typename T>
-Queue<T>::~Queue()
-{
-	T temp;
-
-	//Free (Dequeue) all nodes in the queue
-	while (dequeue(temp));
-}
-
-
+	bool isEmpty()
+	{
+		return(frtPtr == nullptr);
+	}
+};

@@ -142,12 +142,14 @@
     <ClInclude Include="Cancellation.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Formulation.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="MarsStation.h" />
     <ClInclude Include="Mission.h" />
     <ClInclude Include="Mission_Emergency.h" />
     <ClInclude Include="Mission_Mountainous.h" />
     <ClInclude Include="Mission_Polar.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PriNode.h" />
     <ClInclude Include="PriQ.h" />
     <ClInclude Include="Promotion.h" />
     <ClInclude Include="Queue.h" />

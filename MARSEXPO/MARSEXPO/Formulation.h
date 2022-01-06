@@ -17,10 +17,10 @@ private:
 	const int MDUR;
 	const int SIG;
 public:
-	FormulationEvent(int, int, char, int, int, int);
+	FormulationEvent(char, int, int, int, int, int);
 	~FormulationEvent();
 
-	virtual void execute(PriQ<Mission*>& , Queue<Mission*>& , Queue<Mission*>& );
+	void execute(PriQ<Mission*>& , Queue<Mission*>& , Queue<Mission*>& );
 	int getTargetLocation()const;
 	int getMissionDuration()const;
 	int getMissionSignificance()const;
