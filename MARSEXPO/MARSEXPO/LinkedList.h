@@ -11,6 +11,7 @@ class List
 public:
 	List();
 	List(const List<T>&); //copy constructor
+	Node<T>* getHead();
 	bool isEmpty()const;
 	int getLength()const;
 	T getEntry(int)const;
@@ -65,6 +66,11 @@ List<T>::List(const List<T>& L2)
 		i++;
 	}
 	count = L2.count;
+}
+template<class T>
+Node<T>* List<T>::getHead()
+{
+	return this->Head;
 }
 
 template<class T>

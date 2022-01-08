@@ -56,6 +56,7 @@ private:
 	int AutoP;
 	int NoOfPromotedMissions;
 	int NoOfMissions;
+	int NoofCancelled;
 public:
 	MarsStation(); //contructor
 	~MarsStation();
@@ -77,7 +78,7 @@ public:
 	string stringCompMission (PriQ<Mission*>);
 	string stringMissionPriQ (PriQ<Mission_Emergency*>);
 	string stringPMissionQ (Queue<Mission_Polar*>);
-	string stringMMission (List<Mission_Mountainous>);
+	void stringMMission (List<Mission_Mountainous>);
 	
 	void SaveFile();
 

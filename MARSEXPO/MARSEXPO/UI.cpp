@@ -59,7 +59,7 @@ void UI::Set_Auto(int autoprom)
 	else AutoP = 0;
 }
 
-bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency, int& NoOFMissions)
+bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency, int& NoOFMissions, int& NoofCancelled)
 {
 	bool Valid;
 	string filename;
@@ -85,14 +85,14 @@ bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, 
 		AutoP = AutoPr;
 	else AutoP = 0;
 
-	Valid = Fill_Events(fin, Event_List, NoOFMissions);
+	Valid = Fill_Events(fin, Event_List, NoOFMissions, NoofCancelled);
 
 	fin.close();
 
 	return Valid;
 }
 
-bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List,int& NoOFMissions)
+bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List,int& NoOFMissions, int& NoofCancelled)
 {
 	char ETyp = 'un';	//Event Type
 	char MTyp = 'un';	//Mission Type
@@ -137,6 +137,7 @@ bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List,int& NoOFMissions)
 		{
 			fin >> ED >> id;
 			CancellationEvent* Cancellation = new CancellationEvent(ED, id);
+			NoofCancelled++;
 			Event_List.enqueue(Cancellation);
 		}
 		else if (ETyp == 'P')

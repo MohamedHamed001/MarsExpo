@@ -4,6 +4,7 @@ MarsStation::MarsStation()
 {
     UIptr = new UI();
     NoOfMissions = 0;
+    NoofCancelled = 0;
     current_day = 0;
     Num_Of_Events = 0;
     AutoP = 0;
@@ -14,7 +15,7 @@ int Rover::I_D = 0;
 
 bool MarsStation::Load()
 {
-    bool Valid = UIptr->Read_File(Event_List, rovers_Mountainous, rovers_Polar, rovers_Emergency, NoOfMissions);
+    bool Valid = UIptr->Read_File(Event_List, rovers_Mountainous, rovers_Polar, rovers_Emergency, NoOfMissions, NoofCancelled);
 
     if (Valid)
     {
@@ -26,15 +27,13 @@ bool MarsStation::Load()
 
 void MarsStation::simulate()
 {
-    NoOfMissions--;
     bool Sim_Possible = Load();
     if (!Sim_Possible)
-
     {
         UIptr->Error();
         return;
     }
-    while (NoOfMissions != CompletedMissions.getSize())
+    while (CompletedMissions.getSize() != (NoOfMissions-NoofCancelled))
     {
         current_day++;
         CheckEvent();
@@ -254,7 +253,6 @@ void MarsStation::Assign_mountainousMission()
         else
             return;
     }
-
 }
 
 void MarsStation::Assign_PolarMission()
@@ -545,24 +543,57 @@ string MarsStation::stringPMissionQ(Queue<Mission_Polar*> x)
     return P + " ";
 }
 
-string MarsStation::stringMMission(List<Mission_Mountainous> x)
+void MarsStation::stringMMission(List<Mission_Mountainous> x)
 {
-    List<Mission_Mountainous> Temp = x;
-
-    int size = Temp.getLength();
-    if (size == 0) return "";
-
-    string M = "{";
-
-    for (int i = 1 ; i < size+1; i++)
+    /*
+    while (!tempMountainousWaitingMission.isEmpty())
     {
-        Mission_Mountainous cur(i,0,0,0,0,0);
-        Temp.remove(i);
-        M += to_string(cur.Get_ID()) + ", ";
+        no++;
+        arrk[k++] = tempMountainousWaitingMission.getEntry(1).getID();
+        tempMountainousWaitingMission.remove(1);
+    }*/
+    List<Mission_Mountainous>tempMountainousWaitingMission =mountainousWaitingMission;
+    int no = 0;
+     int k;
+    int* arrk = new int[Num_Of_Events];
+    while (!tempMountainousWaitingMission.isEmpty())
+    {
+        no++;
+        arrk[k++] = tempMountainousWaitingMission.getEntry(1).Get_ID();
+        tempMountainousWaitingMission.remove(1);
+    } //transferring from list to array
+
+    if (k != 0)
+    {
+        string M = "{" + to_string(arrk[0]);
+        for (int i = 1; i < k; i++)
+            M+= ', ' + to_string(arrk[i]);
+        
+      
+        //while(cur)
+        //{
+        //    M += to_string(cur->getdata().Get_ID()) + ", ";
+        //    cur = cur->getNext();
+        //}
+        //if (M == "{") M = "";
+        //if (M != "") M.pop_back(), M.pop_back(), M += "}";
+        //return M + " ";
     }
-    if (M == "{") M = "";
-    if (M != "") M.pop_back(), M.pop_back(), M += "}";
-    return M + " ";
+   /* Node<Mission_Mountainous>* p = x.getHead();*/
+    //Node<Mission_Mountainous>* cur = x.getHead();
+
+    ////int size = x.getLength();
+    ////if (size == 0) return "";
+
+    //string M = "{";
+    //while(cur)
+    //{
+    //    M += to_string(cur->getdata().Get_ID()) + ", ";
+    //    cur = cur->getNext();
+    //}
+    //if (M == "{") M = "";
+    //if (M != "") M.pop_back(), M.pop_back(), M += "}";
+    //return M + " ";
 }
 
 void MarsStation::SaveFile()

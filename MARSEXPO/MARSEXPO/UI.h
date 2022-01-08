@@ -36,14 +36,14 @@ private:
 	int Num_Events;			// number of events
 	int mode;				// desired output mode
 	int AutoP;
-	bool Fill_Events(ifstream& fin, Queue<Event*>& Event_List, int& NoOFMissions);  // Takes empty list of events from MarsStation
+	bool Fill_Events(ifstream& fin, Queue<Event*>& Event_List, int& NoOFMissions, int& NoofCancelled); // Takes empty list of events from MarsStation
 																 // and fills it with the events read from file
 
 	void Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency);				// Takes empty list of rovers from Marstations
 																																				// and fills it with the rovers read from file
 
 public:
-	bool Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency, int& NoOFMissions);	// reads input from file, and calls Fill_Events and Fill_Rovers
+	bool Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency, int& NoOFMissions,int& NoofCancelled);	// reads input from file, and calls Fill_Events and Fill_Rovers
 
 	int get_Num_M_Rovers() const;
 	int get_Num_P_Rovers() const;
