@@ -18,6 +18,7 @@ Rover::Rover(int S, int CheckMissions, int CheckDur) : AvgSpeed(S), Missions_Bef
 	Missions_Till_Checkup = Missions_Befor_Checkup;
 }
 
+
 void Rover::set_ID(int ID)
 {
 	Rover_ID = ID;
@@ -88,3 +89,6 @@ bool Rover::ReachCheckup() const
 	return Missions_Till_Checkup == 0;
 }
 
+Rover::~Rover()
+{
+}

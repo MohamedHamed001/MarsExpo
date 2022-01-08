@@ -5,21 +5,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Missions">
       <UniqueIdentifier>{1ad7b8b0-98b4-43f3-88cd-0c17f64e258c}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI">
       <UniqueIdentifier>{36a2e745-97cc-4ab3-b8aa-ae32f8d46c85}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rovers">
-      <UniqueIdentifier>{8b1b0dcd-c996-4ab0-9447-6bffecfeb66b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Events">
-      <UniqueIdentifier>{bcc9df94-f743-47b9-bc5f-1ee314bac66f}</UniqueIdentifier>
     </Filter>
     <Filter Include="MarsStation">
       <UniqueIdentifier>{ccf6b3b8-574f-4dc2-a31d-cfdd806b40fb}</UniqueIdentifier>
@@ -27,6 +17,13 @@
     <Filter Include="DS">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Rovers">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{bcc9df94-f743-47b9-bc5f-1ee314bac66f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -45,9 +42,6 @@
     <ClInclude Include="UI.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Rovers.h">
-      <Filter>Rovers</Filter>
-    </ClInclude>
     <ClInclude Include="Events.h">
       <Filter>Events</Filter>
     </ClInclude>
@@ -59,15 +53,6 @@
     </ClInclude>
     <ClInclude Include="Promotion.h">
       <Filter>Events</Filter>
-    </ClInclude>
-    <ClInclude Include="Rover_Polar.h">
-      <Filter>Rovers</Filter>
-    </ClInclude>
-    <ClInclude Include="Rover_Emergency.h">
-      <Filter>Rovers</Filter>
-    </ClInclude>
-    <ClInclude Include="Rover_Mountainous.h">
-      <Filter>Rovers</Filter>
     </ClInclude>
     <ClInclude Include="MarsStation.h">
       <Filter>MarsStation</Filter>
@@ -84,11 +69,20 @@
     <ClInclude Include="LinkedList.h">
       <Filter>DS</Filter>
     </ClInclude>
-    <ClInclude Include="PriNode.h">
-      <Filter>DS</Filter>
-    </ClInclude>
     <ClInclude Include="AutoP.h">
       <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rover_Polar.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rover_Mountainous.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rover_Emergency.h">
+      <Filter>Rovers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,9 +91,6 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>UI</Filter>
-    </ClCompile>
-    <ClCompile Include="Rovers.cpp">
-      <Filter>Rovers</Filter>
     </ClCompile>
     <ClCompile Include="Events.cpp">
       <Filter>Events</Filter>
@@ -112,15 +103,6 @@
     </ClCompile>
     <ClCompile Include="Promotion.cpp">
       <Filter>Events</Filter>
-    </ClCompile>
-    <ClCompile Include="Rover_Polar.cpp">
-      <Filter>Rovers</Filter>
-    </ClCompile>
-    <ClCompile Include="Rover_Emergency.cpp">
-      <Filter>Rovers</Filter>
-    </ClCompile>
-    <ClCompile Include="Rover_Mountainous.cpp">
-      <Filter>Rovers</Filter>
     </ClCompile>
     <ClCompile Include="MarsStation.cpp">
       <Filter>MarsStation</Filter>
@@ -136,6 +118,21 @@
     </ClCompile>
     <ClCompile Include="AutoP.cpp">
       <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Rovers.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rover_Polar.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rover_Mountainous.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rover_Emergency.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

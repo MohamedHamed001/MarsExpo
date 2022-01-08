@@ -22,21 +22,20 @@ int FormulationEvent::getId() const
 //execute
 void FormulationEvent::execute(MarsStation* mStation)
 {
-	Mission* mission;
 
 	if (TYP == 'E')
 	{
-		mission = new Mission_Emergency(ID, TLOC, MDUR, getED(), SIG);
+		Mission* mission = new Mission_Emergency(ID, TLOC, MDUR, getED(), SIG);
 		mStation->AddMission(mission);
 	}
 	else if (TYP == 'M')
 	{
-		mission = new Mission_Mountainous(ID, TLOC, MDUR, getED(), SIG, ((Mission_Mountainous*)mission)->Get_AutoP());
+		Mission* mission = new Mission_Mountainous(ID, TLOC, MDUR, getED(), SIG, mStation->getAutoPromot());
 		mStation->AddMission(mission);
 	}
 	else if (TYP == 'P')
 	{
-		mission = new Mission_Polar(ID, TLOC, MDUR, getED(), SIG);
+		Mission* mission = new Mission_Polar(ID, TLOC, MDUR, getED(), SIG);
 		mStation->AddMission(mission);
 	}
 	return;

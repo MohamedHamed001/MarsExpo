@@ -9,17 +9,19 @@ private:
 	int Rover_ID;				// ID for each rover
 	int Num_Missions;			// number of missions done by rover (failures are counted too)
 	int Checkup_EndDay;			// the day the rover will finish checkup
-	float AvgSpeed;					// speed for each rover type
+	float AvgSpeed;				// speed for each rover type
 	int Missions_Befor_Checkup;	// number of missions before needing a checkup
 	int Checkup_Dur;			// checkup duration
 	int Missions_Till_Checkup;	// number of missions left till checkup is required
 	Mission* Curr_Mission;		// the missions currently in execution
 
+	
 public:
-	static int ID;
+	int ID;
 
 	Rover();
 	Rover(int, int, int);
+	~Rover();
 
 	virtual void set_ID(int);
 	virtual int get_ID() const;

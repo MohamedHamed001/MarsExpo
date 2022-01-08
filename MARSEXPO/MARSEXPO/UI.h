@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+
 #include "Events.h"
 #include "Formulation.h"
 #include "Cancellation.h"
@@ -10,6 +11,7 @@
 #include "Rover_Polar.h"
 #include "PriQ.h"
 #include "Queue.h"
+#include "MarsStation.h"
 
 #include <iostream>
 #include <iomanip>
@@ -20,6 +22,8 @@ using namespace std;
 class UI
 {
 private:
+	MarsStation* mStation;
+
 	int M_Rovers;			// number of Mountainous  rovers
 	int P_Rovers;			// number of polar rovers
 	int E_Rovers;			// number of emergency rovers
@@ -37,11 +41,11 @@ private:
 	bool Fill_Events(ifstream& fin, Queue<Event*>& Event_List);  // Takes empty list of events from MarsStation
 																 // and fills it with the events read from file
 
-	void Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_Mountainous);				// Takes empty list of rovers from Marstations
+	void Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency);				// Takes empty list of rovers from Marstations
 																																				// and fills it with the rovers read from file
 
 public:
-	bool Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_Mountainous);	// reads input from file, and calls Fill_Events and Fill_Rovers
+	bool Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency);	// reads input from file, and calls Fill_Events and Fill_Rovers
 
 	int get_Num_M_Rovers() const;
 	int get_Num_P_Rovers() const;
@@ -56,6 +60,6 @@ public:
 	void Print(string, string, string, string, string, string);
 	void SaveFile(string, string, string, string, float, float, int);
 	int getMode();
-	//void Abort();
+	void Error();
 };
 //aboooood

@@ -50,3 +50,10 @@ int Mission::Get_MissionDuration() { return MissionDuration; }
 
 int Mission::Get_SIG() { return SIG; }
 
+bool Mission::operator==(const Mission& recivedMission)
+{
+	if (recivedMission.ID == ID)
+		return true;
+	return false;
+}
+

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include <cmath>
 
 class Mission
@@ -36,4 +35,5 @@ public:
 	virtual int Get_Tloc();
 	virtual int Get_MissionDuration();
 
+	bool operator==(const Mission&);
 };

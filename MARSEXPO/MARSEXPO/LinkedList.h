@@ -60,7 +60,7 @@ List<T>::List(const List<T>& L2)
 	int i = 1;
 	while (original)
 	{
-		this->insert(i, original->getItem());
+		this->insert(i, original->getdata());
 		original = original->getNext();
 		i++;
 	}
@@ -88,7 +88,7 @@ T List<T>::getEntry(int pos)const
 {
 	Node<T>* target = getNodeAt(pos);
 	if (target)
-		return target->getItem();
+		return target->getdata();
 }
 
 template<class T>
@@ -193,7 +193,7 @@ int List<T>::getIndexOf(const T& target)const
 	int count = 1;
 	while (!found && targetPtr)
 	{
-		if (targetPtr->getItem() == target)
+		if (targetPtr->getdata() == target)
 		{
 			found = true;
 			position = count;

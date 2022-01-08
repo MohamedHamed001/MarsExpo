@@ -11,5 +11,5 @@ public:
 
 	void set_Speed(int);	 // sets speed for each rover
 	float get_Speed() const; // returns the actual speed
-
+	
 };

@@ -16,7 +16,7 @@ public:
 	PriQ(int c = 200);
 	PriQ(const  PriQ<T>& Copy);
 	bool insert(T x, int p);
-	T extract_max();
+	T GetMax();
 	T peek();
 	bool isEmpty();
 	int getSize();
@@ -98,7 +98,7 @@ bool PriQ<T>::insert(T x, int p) {
 }
 
 template <typename T>
-T PriQ<T>::extract_max() {
+T PriQ<T>::GetMax() {
 	if (size <= 0) return nullptr;
 	if (size == 1) {
 		size--;

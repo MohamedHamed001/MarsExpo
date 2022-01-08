@@ -2,10 +2,10 @@
 
 
 
-/*void UI::Abort()
+void UI::Error()
 {
-	cout << "Simulation aborted due to improper input" << endl;
-}*/
+	cout << "Error due to improper input" << endl;
+}
 
 int UI::get_Num_M_Rovers() const
 {
@@ -52,7 +52,7 @@ int UI::get_NumEvents() const
 	return Num_Events;
 }
 
-bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar )
+bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency)
 {
 	bool Valid;
 	string filename;
@@ -61,27 +61,35 @@ bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_emergency, Pr
 	cout << endl;
 	filename += ".txt"; // adds .txt extension to filename
 
-	ifstream fin(filename); // opens file to read from
+	ifstream fin;
+	fin.open(filename);
 
-	if (fin.is_open()) // makes sure file was opened successfully
+	if (!fin.is_open()) // makes sure file was opened successfully
 	{
-		Fill_Rovers(fin, rovers_emergency, rovers_polar, rovers_Mountainous); // fills the rover lists
-		Valid = Fill_Events(fin, Event_List);			  // fills the event list
+		cout << "\t" << filename + " not found" << endl;
+		exit(1);
 	}
 
-	fin.close(); // closes file so other handles could use it later on
+	Fill_Rovers(fin, rovers_Mountainous, rovers_polar, rovers_emergency); // fills the rover lists
+
+	fin >> AutoP;
+	mStation->setAutoPromot(AutoP);
+
+	Valid = Fill_Events(fin, Event_List);
+
+	fin.close();
 
 	return Valid;
 }
 
 bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
 {
-	char ETyp = 'x';
-	char MTyp = 'x';
+	char ETyp = 'un';	//Event Type
+	char MTyp = 'un';	//Mission Type
 	int ED = -1, id = -1, TLoc = -1, dur = -1, sig = -1;
 
 	fin >> Num_Events;
-
+	mStation->setEventCount(Num_Events);
 	// There are no rovers, but there are missions
 	// so simulation can't run
 	if (M_Rovers == 0 && P_Rovers == 0 && E_Rovers == 0 && Num_Events != 0)
@@ -126,7 +134,7 @@ bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
 	return true; // simulation possible
 }
 
-void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar)
+void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency)
 {
 	Rover* rover = nullptr;
 
@@ -136,9 +144,9 @@ void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_emergency, PriQ<Rover*>
 	fin >> Checkup >> M_Checkup_Dur >> P_Checkup_Dur >> E_Checkup_Dur;
 	for (int i = 0; i < M_Rovers; i++)
 	{
-		rover = new Rover(M_Speed, Checkup, M_Checkup_Dur);						// creates the rover
+		rover = new Rover(M_Speed, Checkup, M_Checkup_Dur);							// creates the rover
 		rovers_Mountainous.insert(rover, ((Rover_Mountainous*)rover)->get_Speed());	// places it in the list, sorted
-																				// descendingly according to speed
+																					// descendingly according to speed
 	}
 	for (int i = 0; i < E_Rovers; i++)
 	{
@@ -179,7 +187,10 @@ void UI::Print(string line1, string line2, string line3, string line4, string li
 void UI::SaveFile(string line1, string line2, string line3, string line4, float wait, float exec, int AutoP) 
 {
 	if (mode == 3)
+	{
 		cout << "Silent Mode \nSimulation Starts...\n";
+		cout << "Simulation ends, Output file created\n\n";
+	}
 
 	ofstream saved_file;
 	saved_file.open("saved_file.txt", ios::out | ios::trunc);
@@ -187,6 +198,5 @@ void UI::SaveFile(string line1, string line2, string line3, string line4, float 
 	saved_file << "Avg. Wait = " << setprecision(4) << wait << ", Avg. Exec = " << setprecision(4) << exec;
 	saved_file << endl << "Auto-promoted = " << AutoP;
 	saved_file.close();
-	cout << "Simulation ends, Output file created\n\n";
 }
 

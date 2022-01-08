@@ -150,7 +150,6 @@
     <ClInclude Include="Mission_Mountainous.h" />
     <ClInclude Include="Mission_Polar.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="PriNode.h" />
     <ClInclude Include="PriQ.h" />
     <ClInclude Include="Promotion.h" />
     <ClInclude Include="Queue.h" />
@@ -165,6 +164,7 @@
     <ClCompile Include="Cancellation.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Formulation.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MarsStation.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="Mission_Emergency.cpp" />

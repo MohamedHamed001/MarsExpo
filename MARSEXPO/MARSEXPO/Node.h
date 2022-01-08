@@ -3,16 +3,24 @@ template<typename T>
 class Node
 {
 protected:
-	T item;	
+	T item;
 	Node<T>* next;
+
+	int priority;
+
 public:
 
 	Node();
 	Node(const T&);
 	Node(const T&, Node<T>*);
+	Node(T val, int p);
 	void setItem(const T&);
-	void setNext(Node<T>* );
-	T getItem() const;
+	void setNext(Node<T>*);
+	T getdata() const;
+
+	void setpriority(int d);
+	int getpriority();
+
 	Node<T>* getNext() const;
 };
 template<typename T>
@@ -34,6 +42,14 @@ Node<T>::Node(const T& newItem, Node<T>* nextNode) : item(newItem)
 	next = nextNode;
 }
 
+template < typename T>
+Node<T>::Node(T val, int p)
+{
+	item = val;
+	priority = p;
+}
+
+
 template<typename T>
 
 void Node<T>::setItem(const T& newItem)
@@ -48,13 +64,26 @@ void Node<T>::setNext(Node<T>* nextNodePtr)
 	next = nextNodePtr;
 }
 template<typename T>
-T Node<T>::getItem() const
+T Node<T>::getdata() const
 {
 	return item;
-} // end getItem
+} // end getdata
 
 template<typename T>
 Node<T>* Node<T>::getNext() const
 {
 	return next;
 }
+
+template < typename T>
+void Node<T>::setpriority(int d)
+{
+	priority = d;
+}
+
+template < typename T>
+int Node<T>::getpriority()
+{
+	return priority;
+}
+
