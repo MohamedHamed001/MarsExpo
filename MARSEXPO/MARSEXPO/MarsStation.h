@@ -78,7 +78,7 @@ public:
 	string stringCompMission (PriQ<Mission*>);
 	string stringMissionPriQ (PriQ<Mission_Emergency*>);
 	string stringPMissionQ (Queue<Mission_Polar*>);
-	void stringMMission (List<Mission_Mountainous>);
+	string stringMMission (List<Mission_Mountainous>);
 	
 	void SaveFile();
 

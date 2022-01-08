@@ -543,18 +543,11 @@ string MarsStation::stringPMissionQ(Queue<Mission_Polar*> x)
     return P + " ";
 }
 
-void MarsStation::stringMMission(List<Mission_Mountainous> x)
+string MarsStation::stringMMission(List<Mission_Mountainous> x)
 {
-    /*
-    while (!tempMountainousWaitingMission.isEmpty())
-    {
-        no++;
-        arrk[k++] = tempMountainousWaitingMission.getEntry(1).getID();
-        tempMountainousWaitingMission.remove(1);
-    }*/
     List<Mission_Mountainous>tempMountainousWaitingMission =mountainousWaitingMission;
     int no = 0;
-     int k;
+    int k = 0;
     int* arrk = new int[Num_Of_Events];
     while (!tempMountainousWaitingMission.isEmpty())
     {
@@ -567,18 +560,13 @@ void MarsStation::stringMMission(List<Mission_Mountainous> x)
     {
         string M = "{" + to_string(arrk[0]);
         for (int i = 1; i < k; i++)
-            M+= ', ' + to_string(arrk[i]);
-        
-      
-        //while(cur)
-        //{
-        //    M += to_string(cur->getdata().Get_ID()) + ", ";
-        //    cur = cur->getNext();
-        //}
-        //if (M == "{") M = "";
-        //if (M != "") M.pop_back(), M.pop_back(), M += "}";
-        //return M + " ";
+        {
+            M = M + ", " + to_string(arrk[i]);
+        }
+        return M + "}";
     }
+    else
+        return "";
    /* Node<Mission_Mountainous>* p = x.getHead();*/
     //Node<Mission_Mountainous>* cur = x.getHead();
 
