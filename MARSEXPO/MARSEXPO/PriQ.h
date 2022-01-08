@@ -15,7 +15,7 @@ private:
 public:
 	PriQ(int c = 200);
 	PriQ(const  PriQ<T>& Copy);
-	bool insert(T x, int p);
+	bool insert(T x, float p);
 	T GetMax();
 	T peek();
 	bool isEmpty();
@@ -88,7 +88,8 @@ void PriQ<T>::reheap_down(int idx) {
 }
 
 template <typename T>
-bool PriQ<T>::insert(T x, int p) {
+bool PriQ<T>::insert(T x, float p) 
+{
 	if (size == capacity) return 0;
 	Node<T>* node = new Node<T>(x, p);
 	size++;

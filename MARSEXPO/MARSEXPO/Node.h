@@ -63,6 +63,7 @@ void Node<T>::setNext(Node<T>* nextNodePtr)
 {
 	next = nextNodePtr;
 }
+
 template<typename T>
 T Node<T>::getdata() const
 {

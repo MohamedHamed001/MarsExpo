@@ -3,15 +3,18 @@
 MarsStation::MarsStation()
 {
     UIptr = new UI();
+    NoOfMissions = 0;
     current_day = 0;
     Num_Of_Events = 0;
     AutoP = 0;
     srand(time(NULL)); // changes the seed for rand()
 }
 
+int Rover::I_D = 0;
+
 bool MarsStation::Load()
 {
-    bool Valid = UIptr->Read_File(Event_List, rovers_Mountainous, rovers_Polar, rovers_Emergency);
+    bool Valid = UIptr->Read_File(Event_List, rovers_Mountainous, rovers_Polar, rovers_Emergency, NoOfMissions);
 
     if (Valid)
     {
@@ -23,13 +26,15 @@ bool MarsStation::Load()
 
 void MarsStation::simulate()
 {
+    NoOfMissions--;
     bool Sim_Possible = Load();
     if (!Sim_Possible)
+
     {
         UIptr->Error();
         return;
     }
-    while (Num_Of_Events != CompletedMissions.getSize())
+    while (NoOfMissions != CompletedMissions.getSize())
     {
         current_day++;
         CheckEvent();
@@ -42,15 +47,14 @@ void MarsStation::simulate()
 
         Output();
     }
-
-
     SaveFile();
 }
 
 void MarsStation::setAutoPromot(int autoProm)
 {
-    AutoP = (autoProm >= 0 ? autoProm : 0);
+    UIptr->Set_Auto(autoProm);
 }
+
 int MarsStation::getAutoPromot()
 {
     return AutoP;
@@ -258,7 +262,7 @@ void MarsStation::Assign_PolarMission()
     Rover* R;
     Mission_Polar* M;
 
-    while (!(PolarWaitingMission.peek(M)))
+    while ((PolarWaitingMission.peek(M)))
     {
         if (!(rovers_Polar.isEmpty()))
         {
@@ -335,8 +339,6 @@ void MarsStation::Assign_EmergencyMission()
         else
             return;
     }
-
-
 }
 
 void MarsStation::Output()
@@ -388,7 +390,7 @@ string MarsStation::stringRover(PriQ<Rover*> x)
     }
     if (wattingE == "[") wattingE = "";
     if (watinngP == "(") watinngP = "";
-    if (wattingM == "{") watinngP = "";
+    if (wattingM == "{") wattingM = "";
     if (wattingE != "") wattingE.pop_back(), wattingE.pop_back(), wattingE += "]";
     if (watinngP != "") watinngP.pop_back(), watinngP.pop_back(), watinngP += ")";
     if (wattingM != "") wattingM.pop_back(), wattingM.pop_back(), wattingM += "}";
@@ -411,17 +413,17 @@ string MarsStation::stringInExcM_R(PriQ<Rover*> x)
         Rover* curR = Temp.GetMax();
         Mission* curM = curR->get_Mission();
 
-        if (dynamic_cast<Mission_Emergency*>(curR)) {
+        if (dynamic_cast<Mission_Emergency*>(curM)) {
             inexcE += to_string(curM->Get_ID()) + "/";
             inexcE += to_string(curR->get_ID()) + ", ";
         }
 
-        else if (dynamic_cast<Mission_Polar*>(curR)) {
+        else if (dynamic_cast<Mission_Polar*>(curM)) {
             inexcP += to_string(curM->Get_ID()) + "/";
             inexcP += to_string(curR->get_ID()) + ", ";
         }
 
-        else if (dynamic_cast<Mission_Mountainous*>(curR)) {
+        else if (dynamic_cast<Mission_Mountainous*>(curM)) {
             inexcM += to_string(curM->Get_ID()) + "/";
             inexcM += to_string(curR->get_ID()) + ", ";
 
@@ -429,7 +431,7 @@ string MarsStation::stringInExcM_R(PriQ<Rover*> x)
     }
     if (inexcE == "[") inexcE = "";
     if (inexcP == "(") inexcP = "";
-    if (inexcM == "{") inexcP = "";
+    if (inexcM == "{") inexcM = "";
     if (inexcE != "") inexcE.pop_back(), inexcE.pop_back(), inexcE += "]";
     if (inexcP != "") inexcP.pop_back(), inexcP.pop_back(), inexcP += ")";
     if (inexcM != "") inexcM.pop_back(), inexcM.pop_back(), inexcM += "}";
@@ -463,7 +465,7 @@ string MarsStation::stringCheckUpRover(Queue<Rover*> x)
     }
     if (wattingE == "[") wattingE = "";
     if (watinngP == "(") watinngP = "";
-    if (wattingM == "{") watinngP = "";
+    if (wattingM == "{") wattingM = "";
     if (wattingE != "") wattingE.pop_back(), wattingE.pop_back(), wattingE += "]";
     if (watinngP != "") watinngP.pop_back(), watinngP.pop_back(), watinngP += ")";
     if (wattingM != "") wattingM.pop_back(), wattingM.pop_back(), wattingM += "}";
@@ -496,7 +498,7 @@ string MarsStation::stringCompMission(PriQ<Mission*> x)
     }
     if (compE == "[") compE = "";
     if (compP == "(") compP = "";
-    if (compM == "{") compP = "";
+    if (compM == "{") compM = "";
     if (compE != "") compE.pop_back(), compE.pop_back(), compE += "]";
     if (compP != "") compP.pop_back(), compP.pop_back(), compP += ")";
     if (compM != "") compM.pop_back(), compM.pop_back(), compM += "}";

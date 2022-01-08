@@ -49,13 +49,13 @@ private:
 	PriQ<Mission_Emergency*> EmergencyWaitingMission;
 	Queue<Mission_Polar*> PolarWaitingMission;
 
-	UI* UIptr=nullptr;	 // pointer to user interface
+	UI* UIptr;	 // pointer to user interface
 
 	int current_day;
 	int Num_Of_Events;
 	int AutoP;
 	int NoOfPromotedMissions;
-
+	int NoOfMissions;
 public:
 	MarsStation(); //contructor
 	~MarsStation();

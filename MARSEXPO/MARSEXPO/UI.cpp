@@ -52,7 +52,14 @@ int UI::get_NumEvents() const
 	return Num_Events;
 }
 
-bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency)
+void UI::Set_Auto(int autoprom)
+{
+	if (autoprom >= 0)
+		AutoP = autoprom;
+	else AutoP = 0;
+}
+
+bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover*>& rovers_polar, PriQ<Rover*>& rovers_emergency, int& NoOFMissions)
 {
 	bool Valid;
 	string filename;
@@ -72,24 +79,26 @@ bool UI::Read_File(Queue<Event*>& Event_List, PriQ<Rover*>& rovers_Mountainous, 
 
 	Fill_Rovers(fin, rovers_Mountainous, rovers_polar, rovers_emergency); // fills the rover lists
 
-	fin >> AutoP;
-	mStation->setAutoPromot(AutoP);
+	fin >> AutoPr;
+	 //mStation->setAutoPromot(AutoPr);
+	if (AutoPr >= 0)
+		AutoP = AutoPr;
+	else AutoP = 0;
 
-	Valid = Fill_Events(fin, Event_List);
+	Valid = Fill_Events(fin, Event_List, NoOFMissions);
 
 	fin.close();
 
 	return Valid;
 }
 
-bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
+bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List,int& NoOFMissions)
 {
 	char ETyp = 'un';	//Event Type
 	char MTyp = 'un';	//Mission Type
 	int ED = -1, id = -1, TLoc = -1, dur = -1, sig = -1;
 
 	fin >> Num_Events;
-	mStation->setEventCount(Num_Events);
 	// There are no rovers, but there are missions
 	// so simulation can't run
 	if (M_Rovers == 0 && P_Rovers == 0 && E_Rovers == 0 && Num_Events != 0)
@@ -106,26 +115,33 @@ bool UI::Fill_Events(ifstream& fin, Queue<Event*>& Event_List)
 
 	for (int i = 0; i < Num_Events; i++)  // loads the data of each event
 	{
-		fin >> ETyp >> MTyp >> ED >> id >> TLoc >> dur >> sig;
+		fin >> ETyp;
 
 		// there are x missions, but no x rovers
 		// so simulation can't run properly
-		if (E_Rovers == 0 && MTyp == 'E' || M_Rovers == 0 && MTyp == 'M' || P_Rovers == 0 && MTyp == 'P')
-		{
-			return false;
-		}
+		
 		if (ETyp == 'F')
 		{
+			fin >> MTyp >> ED >> id >> TLoc >> dur >> sig;
+
+			if (E_Rovers == 0 && MTyp == 'E' || M_Rovers == 0 && MTyp == 'M' || P_Rovers == 0 && MTyp == 'P')
+			{
+				return false;
+			}
+
 			FormulationEvent* Formulation = new FormulationEvent(MTyp, ED, id, TLoc, dur, sig);
+			NoOFMissions++;
 			Event_List.enqueue(Formulation);
 		}
 		else if (ETyp == 'X')
 		{
+			fin >> ED >> id;
 			CancellationEvent* Cancellation = new CancellationEvent(ED, id);
 			Event_List.enqueue(Cancellation);
 		}
 		else if (ETyp == 'P')
 		{
+			fin >> ED >> id;
 			PromotionEvent* Promotion = new PromotionEvent(ED, id);
 			Event_List.enqueue(Promotion);
 		}
@@ -144,19 +160,19 @@ void UI::Fill_Rovers(ifstream& fin, PriQ<Rover*>& rovers_Mountainous, PriQ<Rover
 	fin >> Checkup >> M_Checkup_Dur >> P_Checkup_Dur >> E_Checkup_Dur;
 	for (int i = 0; i < M_Rovers; i++)
 	{
-		rover = new Rover(M_Speed, Checkup, M_Checkup_Dur);							// creates the rover
+		rover = new Rover_Mountainous(M_Speed, Checkup, M_Checkup_Dur);									// creates the rover
 		rovers_Mountainous.insert(rover, ((Rover_Mountainous*)rover)->get_Speed());	// places it in the list, sorted
-																					// descendingly according to speed
+																							// descendingly according to speed
 	}
 	for (int i = 0; i < E_Rovers; i++)
 	{
-		rover = new Rover(E_Speed, Checkup, E_Checkup_Dur);						// creates the rover
+		rover = new Rover_Emergency(E_Speed, Checkup, E_Checkup_Dur);						// creates the rover
 		rovers_emergency.insert(rover, ((Rover_Emergency*)rover)->get_Speed()); // places it in the list, sorted
 																				// descendingly according to speed
 	}
 	for (int i = 0; i < P_Rovers; i++)
 	{
-		rover = new Rover(P_Speed, Checkup, P_Checkup_Dur);				// creates the rover
+		rover = new Rover_Polar(P_Speed, Checkup, P_Checkup_Dur);				// creates the rover
 		rovers_polar.insert(rover, ((Rover_Polar*)rover)->get_Speed()); // places it in the list, sorted
 																		// descendingly according to speed
 	}

@@ -17,8 +17,7 @@ private:
 
 	
 public:
-	int ID;
-
+	static int I_D;
 	Rover();
 	Rover(int, int, int);
 	~Rover();

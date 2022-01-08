@@ -3,7 +3,7 @@
 
 Rover_Polar::Rover_Polar(int S, int CheckMissions, int CheckDur) : Rover(S, CheckMissions, CheckDur)
 {
-	set_ID(++ID); // increases static id from 0 to 1 for example, then places it
+	set_ID(++I_D); // increases static id from 0 to 1 for example, then places it
 	set_Speed(get_Avg_Speed());
 }
 

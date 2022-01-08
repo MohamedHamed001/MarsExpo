@@ -9,7 +9,7 @@ private:
 public:
 	Rover_Mountainous(int, int, int);
 
-	void set_Speed(int);	 // sets speed for each rover
+	void set_Speed(float);	 // sets speed for each rover
 	float get_Speed() const; // returns the actual speed
 
 };
